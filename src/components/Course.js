@@ -20,7 +20,7 @@ export default function Course() {
 	useEffect(() => {
 		getCourse();
 		// console.log({ id });
-	}, [id]);
+	});
 
 	return (
 		<div>
