@@ -1,13 +1,86 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+:root {
+	--primary: darkslategray;
+	--secondary: white;
+}
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+		monospace;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+		"Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+		sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+nav {
+	background-color: var(--primary);
+}
+nav > ul {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	list-style-type: none;
+}
+
+nav > ul > .rightlinks {
+	display: flex;
+	justify-content: space-around;
+}
+
+nav > ul Link {
+	text-decoration: none;
+}
+
+nav > ul li {
+	padding: 20px;
+	color: var(--secondary);
+}
+
+nav > ul li:hover {
+	color: var(--primary);
+	background-color: var(--secondary);
+	cursor: pointer;
+}
+
+.courses {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+	/* grid-template-columns: repeat(2, 1fr);
+	grid-auto-flow: column; */
+}
+.course-tile {
+	width: 90%;
+	border: 1px solid darkslategray;
+	padding: 15px;
+	border-radius: 20px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 20px;
+}
+
+.course-tile ul {
+	list-style-type: none;
+}
+
+.course-tile .topics {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+	grid-gap: 5px;
+	margin-top: 10px;
+}
+.course-tile .topics li {
+	border: 1px solid var(--primary);
+	border-radius: 20px;
+	padding: 5px;
+	text-align: center;
+	display: grid;
+	place-items: center;
+}
+
+.course-tile .topics li:hover {
+	background-color: var(--primary);
+	color: var(--secondary);
 }

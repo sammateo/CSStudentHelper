@@ -1,0 +1,18 @@
+Home Page:
+Subjects Offered with Summary
+
+Favorites Page:
+Selected Subjects
+
+Subject:
+Each Subject has a name, topic summary based on handbook and the option to add it to the user's favorites list.
+Subject Summary: Name, 3 Topics, number of videos, number of documents on the topic
+
+When Selected,  A subject opens to a dynamic page made possible using react router which would have the name of the course, documents, links to videos/videos, past papers from uwi's past paper archive
+
+
+Navigation Bar: 
+Project Name, Home, Favorites, Profile
+
+Profile Page: 
+Name, Favorite Courses
