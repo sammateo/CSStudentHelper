@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
+
 export default function CourseTile({ details }) {
 	const linkStyle = {
 		color: "black",
@@ -7,6 +9,7 @@ export default function CourseTile({ details }) {
 		textAlign: "center",
 		// textDecoration: "none",
 	};
+	const { isAuthenticated } = useAuth0();
 	return (
 		<div className="course-tile">
 			<Link to={`/course/${details._id}`} style={linkStyle}>
@@ -22,6 +25,7 @@ export default function CourseTile({ details }) {
 					))}
 				</div>
 			</ul>
+			{isAuthenticated && <div className="favorite">&hearts;</div>}
 		</div>
 	);
 }

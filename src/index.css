@@ -59,6 +59,7 @@ nav > ul li:hover {
 	margin-left: auto;
 	margin-right: auto;
 	margin-bottom: 20px;
+	position: relative;
 }
 
 .course-tile ul {
@@ -83,4 +84,64 @@ nav > ul li:hover {
 .course-tile .topics li:hover {
 	background-color: var(--primary);
 	color: var(--secondary);
+}
+
+.course-tile .favorite {
+	position: absolute;
+	/* width: 100px; */
+	color: var(--primary);
+	background-color: var(--secondary);
+	padding: 0px 5px;
+	outline: none;
+	top: 5px;
+	right: 5px;
+	border-radius: 10px;
+	border: 2px solid var(--primary);
+	font-size: 1.5rem;
+
+	-webkit-text-fill-color: white; /* Will override color (regardless of order) */
+	-webkit-text-stroke-width: 1px;
+	-webkit-text-stroke-color: var(--primary);
+}
+
+.profile {
+	display: flex;
+	flex-direction: column;
+	/* place-items: center; */
+	height: 80vh;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+}
+
+.profile img {
+	width: 100px;
+}
+
+.profile button,
+.loginbtn {
+	position: absolute;
+	width: 100px;
+	color: var(--primary);
+	background-color: var(--secondary);
+	padding: 5px 15px;
+	outline: none;
+	top: 20px;
+	right: 20px;
+	border-radius: 10px;
+	border: 2px solid var(--primary);
+}
+
+.loginbtn {
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	padding: 10px 15px;
+	width: 200px;
+}
+.profile button:hover,
+.loginbtn:hover {
+	cursor: pointer;
+	color: var(--secondary);
+	background-color: var(--primary);
 }

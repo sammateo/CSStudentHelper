@@ -5,11 +5,13 @@ import Profile from "./Profile";
 import Favorites from "./Favorites";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Course from "./components/Course";
+
 function App() {
 	return (
 		<Router>
 			<div className="App">
 				<Navigation />
+
 				<Routes>
 					<Route path="/favorites" element={<Favorites />} />
 					<Route path="/" exact element={<Home />} />
