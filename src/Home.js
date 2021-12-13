@@ -9,13 +9,17 @@ export default function Home() {
 	const [courses, setCourses] = useState([]);
 
 	const getCourses = async () => {
-		const req = await fetch(`http://localhost:5000/courses/`, {
-			method: "GET",
-			mode: "cors",
-		});
+		const req = await fetch(
+			`http://${window.location.hostname}:5000/courses/`,
+			{
+				method: "GET",
+				mode: "cors",
+			}
+		);
 		const data = await req.json();
 		setCourses(data);
 		console.log(data);
+		// console.log(window.location.hostname);
 	};
 	return (
 		<div>

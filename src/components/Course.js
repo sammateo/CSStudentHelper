@@ -7,20 +7,23 @@ export default function Course() {
 	});
 	let { id } = useParams();
 	// let id = { id };
-	const getCourse = async () => {
-		const req = await fetch(`http://localhost:5000/courses/${id}`, {
-			method: "GET",
-			mode: "cors",
-		});
-		const data = await req.json();
-		setCourse(data);
-		console.log(data);
-	};
 
 	useEffect(() => {
+		const getCourse = async () => {
+			const req = await fetch(
+				`http://${window.location.hostname}:5000/courses/${id}`,
+				{
+					method: "GET",
+					mode: "cors",
+				}
+			);
+			const data = await req.json();
+			setCourse(data);
+			console.log(data);
+		};
 		getCourse();
 		// console.log({ id });
-	});
+	}, [id]);
 
 	return (
 		<div>
@@ -33,6 +36,7 @@ export default function Course() {
 					<li key={topic}>{topic}</li>
 				))}
 			</div>
+			<div className="Videos"></div>
 		</div>
 	);
 }
