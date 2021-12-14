@@ -29,7 +29,7 @@ export default function Favorites() {
 				});
 		};
 		isAuthenticated && !isLoading && getFavorites();
-	}, [isLoading, user]);
+	}, [isLoading, user, isAuthenticated]);
 	const getCourses = async (courseid) => {
 		const req = await fetch(
 			`http://${window.location.hostname}:5000/courses/${courseid}`,
@@ -46,10 +46,17 @@ export default function Favorites() {
 	return (
 		<div>
 			<h1>Favorites</h1>
-
-			{courses.map((course) => {
-				return <CourseTile key={course._id} details={course}></CourseTile>;
-			})}
+			<div className="courses">
+				{courses.map((course, index) => {
+					return (
+						<CourseTile
+							key={course._id}
+							details={course}
+							index={index}
+						></CourseTile>
+					);
+				})}
+			</div>
 		</div>
 	);
 }

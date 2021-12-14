@@ -25,8 +25,14 @@ export default function Home() {
 		<div>
 			<h1>Courses</h1>
 			<div className="courses">
-				{courses.map((course) => {
-					return <CourseTile key={course._id} details={course}></CourseTile>;
+				{courses.map((course, index) => {
+					return (
+						<CourseTile
+							key={course._id}
+							details={course}
+							index={index}
+						></CourseTile>
+					);
 				})}
 			</div>
 		</div>

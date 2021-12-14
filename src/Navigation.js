@@ -6,8 +6,22 @@ export default function Navigation() {
 	const navStyle = {
 		textDecoration: "none",
 	};
+	const currentNav = {
+		color: getComputedStyle(document.documentElement).getPropertyValue(
+			"--primary"
+		),
+		backgroundColor: getComputedStyle(
+			document.documentElement
+		).getPropertyValue("--secondary"),
+	};
 	const { isAuthenticated } = useAuth0();
-
+	const checkPath = (navpath) => {
+		if (window.location.pathname === navpath) {
+			return true;
+		} else {
+			return false;
+		}
+	};
 	return (
 		<nav>
 			<ul>

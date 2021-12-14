@@ -60,8 +60,22 @@ nav > ul li:hover {
 	margin-right: auto;
 	margin-bottom: 20px;
 	position: relative;
+	animation-name: loadin;
+	animation-duration: 1s;
 }
 
+@keyframes loadin {
+	0% {
+		transform: translate(100px, 50px);
+	}
+}
+
+.course-tile .coursecodename {
+	width: 50%;
+	margin-left: auto;
+	margin-right: auto;
+	/* border: 2px solid var(--primary); */
+}
 .course-tile ul {
 	list-style-type: none;
 }
@@ -102,6 +116,11 @@ nav > ul li:hover {
 	-webkit-text-fill-color: white; /* Will override color (regardless of order) */
 	-webkit-text-stroke-width: 1px;
 	-webkit-text-stroke-color: var(--primary);
+}
+
+.course-tile .favorite:hover {
+	cursor: pointer;
+	background-color: var(--primary);
 }
 
 .profile {

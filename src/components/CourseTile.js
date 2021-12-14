@@ -3,10 +3,10 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 
-export default function CourseTile({ details }) {
+export default function CourseTile({ details, index }) {
 	const linkStyle = {
 		color: "black",
-		width: "max-content",
+		width: "70%",
 		textAlign: "center",
 		// textDecoration: "none",
 	};
@@ -15,7 +15,7 @@ export default function CourseTile({ details }) {
 	// 	WebkitTextFillColor: "white",
 	// };
 	const [favorites, setFavorites] = useState([]);
-	const [isfavorite, setisfavorite] = useState(false);
+	// const [isfavorite, setisfavorite] = useState(false);
 	const [favColor, setfavColor] = useState({
 		WebkitTextFillColor: "white",
 	});
@@ -36,16 +36,13 @@ export default function CourseTile({ details }) {
 			data[0].favorites.forEach((fav) => {
 				if (details._id === fav) {
 					removeFavorite();
-					setfavColor({ WebkitTextFillColor: "white" }) && setisfavorite(false);
+					setfavColor({ WebkitTextFillColor: "white" });
 					found = 1;
 					return;
 				}
 			});
 
-		found === 0 &&
-			addFavorite() &&
-			setfavColor({ WebkitTextFillColor: "red" }) &&
-			setisfavorite(true);
+		found === 0 && addFavorite() && setfavColor({ WebkitTextFillColor: "red" });
 
 		// getFavorites();
 		return;
@@ -78,7 +75,6 @@ export default function CourseTile({ details }) {
 		);
 		const data = await req.json();
 		console.log(data);
-		setisfavorite(false);
 	};
 
 	const addFavorite = async () => {
@@ -106,7 +102,6 @@ export default function CourseTile({ details }) {
 			}
 		);
 		const data = await req.json();
-		setisfavorite(true);
 		console.log(data);
 	};
 
@@ -125,19 +120,22 @@ export default function CourseTile({ details }) {
 			data.length > 0 && setFavorites(data[0].favorites);
 			data.length > 0 &&
 				data[0].favorites.forEach((fav) => {
-					fav === details._id &&
-						setfavColor({ WebkitTextFillColor: "red" }) &&
-						setisfavorite(true);
+					fav === details._id && setfavColor({ WebkitTextFillColor: "red" });
 				});
 		};
 		isAuthenticated && !isLoading && getFavorites();
-	}, [isLoading, user, details._id]);
+	}, [isLoading, user, details._id, isAuthenticated]);
 	return (
-		<div className="course-tile">
-			<Link to={`/course/${details._id}`} style={linkStyle}>
-				<p>{details.code}</p>
-				<h3>{details.name}</h3>
-			</Link>
+		<div
+			className="course-tile"
+			style={{ animationDuration: Number(index + 1) + "s" }}
+		>
+			<div className="coursecodename">
+				<Link to={`/course/${details._id}`} style={linkStyle}>
+					<p>{details.code}</p>
+					<h3>{details.name}</h3>
+				</Link>
+			</div>
 
 			<ul>
 				<h4>Topics:</h4>
