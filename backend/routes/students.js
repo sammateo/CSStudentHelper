@@ -8,8 +8,12 @@ router.route("/").get((req, res) => {
 });
 
 router.route("/:id").get((req, res) => {
+	console.log(req.params.id);
 	Student.find({ sub: req.params.id })
-		.then((students) => res.json(students))
+		.then((students) => {
+			res.json(students);
+			console.log(students);
+		})
 		.catch((err) => res.status(400).json("Error: " + err));
 });
 
@@ -22,7 +26,7 @@ router.route("/:id").get((req, res) => {
 router.route("/addfavorite").post((req, res) => {
 	const sub = req.body.sub;
 	const favorite = req.body.favorite;
-
+	console.log(req.body);
 	Student.updateOne(
 		{ sub: sub },
 		{ $addToSet: { favorites: favorite } },
@@ -35,9 +39,10 @@ router.route("/addfavorite").post((req, res) => {
 router.route("/removefavorite").post((req, res) => {
 	const sub = req.body.sub;
 	const favorite = req.body.favorite;
-
+	console.log("Remove: ");
+	console.log(req.body);
 	Student.updateOne({ sub: sub }, { $pull: { favorites: favorite } })
-		.then(() => res.json(`Favorite Removed`))
+		.then(() => res.json(`Favorite Removed: ${favorite}`))
 		.catch((err) => res.status(400).json("Error: " + err));
 });
 

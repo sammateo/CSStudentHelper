@@ -19,56 +19,94 @@ export default function CourseTile({ details }) {
 	const [favColor, setfavColor] = useState({
 		WebkitTextFillColor: "white",
 	});
-	const toggleFavorites = () => {
-		console.log(details._id, user.sub);
-		favorites.forEach((fav) => {
-			if (details._id === fav) {
-				removeFavorite();
-				return;
-			}
-		});
 
-		addFavorite();
+	const toggleFavorites = async () => {
+		console.log(details._id, user.sub);
+		let found = 0;
+		const req = await fetch(
+			`http://${window.location.hostname}:5000/students/${user.sub}`,
+			{
+				method: "GET",
+				mode: "cors",
+			}
+		);
+		const data = await req.json();
+		console.log(data);
+		data.length > 0 &&
+			data[0].favorites.forEach((fav) => {
+				if (details._id === fav) {
+					removeFavorite();
+					setfavColor({ WebkitTextFillColor: "white" }) && setisfavorite(false);
+					found = 1;
+					return;
+				}
+			});
+
+		found === 0 &&
+			addFavorite() &&
+			setfavColor({ WebkitTextFillColor: "red" }) &&
+			setisfavorite(true);
+
+		// getFavorites();
 		return;
 
 		// console.log(favorites);
 	};
 
 	const removeFavorite = async () => {
-		let parameters = JSON.stringify({
+		let parameters = {
 			sub: user.sub,
 			favorite: details._id,
-		});
-		let formData = new FormData();
-		formData.append("parameters", parameters);
+		};
+
+		console.log(parameters);
+
 		const req = await fetch(
 			`http://${window.location.hostname}:5000/students/removefavorite`,
 			{
 				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+					Accept: "application/json",
+				},
 				mode: "cors",
-				body: formData,
+				body: JSON.stringify({
+					sub: user.sub,
+					favorite: details._id,
+				}),
 			}
 		);
 		const data = await req.json();
 		console.log(data);
+		setisfavorite(false);
 	};
 
 	const addFavorite = async () => {
-		let parameters = JSON.stringify({
+		let parameters = {
 			sub: user.sub,
 			favorite: details._id,
-		});
+		};
+		console.log(parameters);
 		// let formData = new FormData();
 		// formData.append("parameters", parameters);
+		// console.log(formData);
 		const req = await fetch(
 			`http://${window.location.hostname}:5000/students/addfavorite`,
 			{
 				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+					Accept: "application/json",
+				},
 				mode: "cors",
-				body: parameters,
+				body: JSON.stringify({
+					sub: user.sub,
+					favorite: details._id,
+				}),
 			}
 		);
 		const data = await req.json();
+		setisfavorite(true);
 		console.log(data);
 	};
 
@@ -84,14 +122,16 @@ export default function CourseTile({ details }) {
 			);
 			const data = await req.json();
 			console.log(data);
-			setFavorites(data[0].favorites);
-			data[0].favorites.forEach((fav) => {
-				fav === details._id && setfavColor({ WebkitTextFillColor: "red" });
-			});
+			data.length > 0 && setFavorites(data[0].favorites);
+			data.length > 0 &&
+				data[0].favorites.forEach((fav) => {
+					fav === details._id &&
+						setfavColor({ WebkitTextFillColor: "red" }) &&
+						setisfavorite(true);
+				});
 		};
-
-		!isLoading && getFavorites();
-	}, [isLoading, user]);
+		isAuthenticated && !isLoading && getFavorites();
+	}, [isLoading, user, details._id]);
 	return (
 		<div className="course-tile">
 			<Link to={`/course/${details._id}`} style={linkStyle}>
