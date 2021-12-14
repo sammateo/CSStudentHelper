@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 
 const studentSchema = new Schema(
 	{
-		id: { type: String, required: true, trim: true },
+		sub: { type: String, required: true, trim: true },
 		favorites: [],
 	},
 	{
