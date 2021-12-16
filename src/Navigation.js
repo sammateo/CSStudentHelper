@@ -29,6 +29,9 @@ export default function Navigation() {
 					<li>CS Helper</li>
 				</Link>
 				<div className="rightlinks">
+					<Link to="/search" style={navStyle}>
+						<li>Search</li>
+					</Link>
 					{isAuthenticated && (
 						<Link to="/favorites" style={navStyle}>
 							<li>Favorites</li>

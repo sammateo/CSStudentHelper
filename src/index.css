@@ -164,3 +164,47 @@ nav > ul li:hover {
 	color: var(--secondary);
 	background-color: var(--primary);
 }
+
+/* Search */
+.search-container > input,
+.search-container > button {
+	/* background-color: blue; */
+	padding: 5px;
+	width: 70%;
+	background-color: var(--secondary);
+	outline: none;
+	border: none;
+	border-bottom: 2px solid var(--primary);
+	margin-left: 5px;
+}
+
+.search-container > button {
+	width: 20%;
+	border: 2px solid var(--primary);
+	margin-left: 10px;
+}
+
+.search-container > button:hover {
+	background-color: var(--primary);
+	color: var(--secondary);
+	cursor: pointer;
+}
+
+.searchfilter-container {
+	/* border: 2px solid var(--primary); */
+	padding: 10px;
+	margin: 10px;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+}
+
+.searchfilter-container input {
+	transform: translateY(2px);
+}
+
+@media screen and (max-width: 400px) {
+	nav > ul li {
+		font-size: 11px;
+	}
+}
