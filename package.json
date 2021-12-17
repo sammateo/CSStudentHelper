@@ -2,8 +2,6 @@
 	"name": "studenthelperdemos",
 	"version": "0.1.0",
 	"private": true,
-	"proxy": "http://localhost:808",
-	"homepage": "./backend/server.js",
 	"dependencies": {
 		"@auth0/auth0-react": "^1.8.0",
 		"@testing-library/jest-dom": "^5.16.1",
@@ -19,7 +17,6 @@
 	},
 	"scripts": {
 		"start": "react-scripts start",
-		"dev": "concurrently \"npm run server\" \"react-scripts start\"",
 		"build": "react-scripts build",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject"
@@ -41,8 +38,5 @@
 			"last 1 firefox version",
 			"last 1 safari version"
 		]
-	},
-	"devDependencies": {
-		"concurrently": "^6.5.0"
 	}
 }
